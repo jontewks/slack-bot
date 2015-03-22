@@ -3,7 +3,9 @@
 var request = require('request');
 
 module.exports = function(url) {
-  this.send = function(message, cb) {
+  var slackBot = {};
+
+  slackBot.send = function(message, cb) {
     // Set defaults
     message = message || {};
     message.text = message.text || 'No text property provided.';
@@ -11,7 +13,7 @@ module.exports = function(url) {
     message.username = message.username || 'slack-bot';
 
     request.post({
-      url: this.url,
+      url: url,
       method: 'POST',
       body: JSON.stringify(message)
     }, function(err, res, body) {
@@ -19,5 +21,5 @@ module.exports = function(url) {
     });
   };
 
-  return this;
+  return slackBot;
 };
