@@ -1,6 +1,6 @@
 {
   "name": "slack-bot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simplifies sending bot messages to slack.",
   "main": "index.js",
   "scripts": {

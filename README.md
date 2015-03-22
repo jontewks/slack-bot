@@ -1,2 +1,2 @@
-# slack-alerts
-Simplifies sending alerts to slack.
+# slack-bot
+Simplifies sending bot messages to slack.
