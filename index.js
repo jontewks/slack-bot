@@ -18,4 +18,6 @@ module.exports = function(url) {
       return cb ? cb(arguments) : null;
     });
   };
+
+  return this;
 };
