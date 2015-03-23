@@ -29,21 +29,21 @@ slackBot.send(messageObject, function(err, res, body) {
 
 The simplest message object:
 ```javascript
-var messageObject = {
+slackBot.send({
     text: 'This message will appear in Slack!'
-};
+}, callback);
 ```
 SlackBot defaults to the #general channel and to the username "Slack Bot" if those properties aren't passed in as in the example above, but can easily be set to whatever you like:
 ```javascript
-var messageObject = {
+slackBot.send({
     text: 'OMG look at this thing',
     channel: '#hackers', // Can also be '@someone' for a direct message
     username: 'Alert Bot'
-};
+}, callback);
 ```
 The other most commonly passed in property is to provide either an icon_emoji or an icon_url to replace the avatar of the bot sending the message:
 ```javascript
-var messageObject = {
+slackBot.send({
     text: 'Put… the bunny… back… in the box.',
     channel: '#onetruegod',
     username: 'Nic Cage',
@@ -51,7 +51,7 @@ var messageObject = {
     icon_emoji: ':niccage:' // You can upload custom emojis in your team settings
     // OR
     icon_url: 'http://i.imgur.com/VVoeZ.gif'
-};
+}, callback);
 ```
 The message object can also take additonal parameters. An overview can be found here: https://api.slack.com/incoming-webhooks
 
