@@ -8,9 +8,9 @@ module.exports = function(url) {
   slackBot.send = function(message, cb) {
     // Set defaults
     message = message || {};
-    message.text = message.text || 'No text property provided.';
+    message.text = message.text || 'You didn\'t pass in a text field silly.';
     message.channel = message.channel || '#general';
-    message.username = message.username || 'slack-bot';
+    message.username = message.username || 'Slack Bot';
 
     request.post({
       url: url,

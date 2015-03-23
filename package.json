@@ -1,6 +1,6 @@
 {
   "name": "slack-bot",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Simplifies sending bot messages to slack.",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/jontewks/slack-bot/issues"
   },
-  "homepage": "https://github.com/jontewks/slack-bot"
+  "homepage": "https://github.com/jontewks/slack-bot",
+  "dependencies": {
+    "request": "^2.53.0"
+  }
 }
