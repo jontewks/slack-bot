@@ -5,6 +5,7 @@ Slack-bot utilizes incoming webhooks in Slack to send messages. You can add the 
 ##### Usage
 ```javascript
 npm install slack-bot (--save)
+
 var slackBot = require('slack-bot')(YOUR_WEBHOOK_URL);
 ```
 ##### Functionality
@@ -12,6 +13,20 @@ To send a message, call the .send function:
 ```javascript
 slackBot.send(messageObject, callback);
 ```
+
+The callback is optional and is passed three arguments:
+* An error object, if applicable
+* The response object
+* The response body
+
+A simple callback example:
+```javascript
+slackBot.send(messageObject, function(err, res, body) {
+  if (err) return next(err);
+  console.log(body);
+});
+```
+
 The simplest message object:
 ```javascript
 var messageObject = {
