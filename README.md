@@ -2,13 +2,14 @@
 Simplifies sending bot messages to slack.
 Slack-bot utilizes incoming webhooks in Slack to send messages. You can add the incoming webhooks integration and get your unique webhook url at: https://YOUR_TEAMS_SLACK_URL/services/new/incoming-webhook.
 
-##### Usage
+### Usage
 ```javascript
 npm install slack-bot (--save)
 
 var slackBot = require('slack-bot')(YOUR_WEBHOOK_URL);
 ```
-##### Functionality
+### Functionality
+##### Sending a message
 To send a message, call the .send function:
 ```javascript
 slackBot.send(messageObject, callback);
@@ -30,27 +31,27 @@ slackBot.send(messageObject, function(err, res, body) {
 The simplest message object:
 ```javascript
 slackBot.send({
-    text: 'This message will appear in Slack!'
+  text: 'This message will appear in Slack!'
 }, callback);
 ```
 SlackBot defaults to the #general channel and to the username "Slack Bot" if those properties aren't passed in as in the example above, but can easily be set to whatever you like:
 ```javascript
 slackBot.send({
-    text: 'OMG look at this thing',
-    channel: '#hackers', // Can also be '@someone' for a direct message
-    username: 'Alert Bot'
+  text: 'OMG look at this thing',
+  channel: '#hackers', // Can also be '@someone' for a direct message
+  username: 'Alert Bot'
 }, callback);
 ```
 The other most commonly passed in property is to provide either an icon_emoji or an icon_url to replace the avatar of the bot sending the message:
 ```javascript
 slackBot.send({
-    text: 'Put… the bunny… back… in the box.',
-    channel: '#onetruegod',
-    username: 'Nic Cage',
+  text: 'Put… the bunny… back… in the box.',
+  channel: '#onetruegod',
+  username: 'Nic Cage',
     
-    icon_emoji: ':niccage:' // You can upload custom emojis in your team settings
-    // OR
-    icon_url: 'http://i.imgur.com/VVoeZ.gif'
+  icon_emoji: ':niccage:' // You can upload custom emojis in your team settings
+  // OR
+  icon_url: 'http://i.imgur.com/VVoeZ.gif'
 }, callback);
 ```
 The message object can also take additonal parameters. An overview can be found here: https://api.slack.com/incoming-webhooks
@@ -58,3 +59,35 @@ The message object can also take additonal parameters. An overview can be found 
 For some advanced message formatting information: https://api.slack.com/docs/formatting
 
 How to send rich messages to slack (with good examples of messsages): https://api.slack.com/docs/attachments
+
+### Fancy Features
+##### Multiple recipients
+Slack-bot can also take an array of channels in the message object in order to send the same message to several people or several channels (or a mix of people and channels) all at once.
+```javascript
+slackBot.send({
+  text: 'Do not go outside, zombies are out there!',
+  channel: ['#general', '@jon', '@charles'],
+  username: 'Zombot',
+  icon_emoji: ':zombie:'
+}, callback);
+```
+In this case, the same message will be sent to the general channel, and to jon and charles as direct messages. When sending a message to multiple channels, the callback receives one argument, which is an object whose keys are each channel the message was sent to, and the value is an object with keys err, res, and body containing the values returned from that particular `POST`. If we were to send the above message to those three channels, the object that would be returned to the callback would look like this:
+```javascript
+{
+  '#general' : {
+    err: null,
+    res: RESPONSE_OBJECT,
+    body: 'ok'
+  },
+  '@jon': {
+    err: null,
+    res: RESPONSE_OBJECT,
+    body: 'ok'
+  },
+  '@charles': {
+    err: null,
+    res: RESPONSE_OBJECT,
+    body: 'ok'
+  }
+}
+```
