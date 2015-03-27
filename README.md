@@ -99,7 +99,7 @@ The reason the error argument passed to the callback is an array of channel name
 slackBot.send(messageObjectToMultipleChannels, function(err, object) {
   if (err) {
     err.forEach(function(channel) {
-      console.log(object[channel].err;
+      console.log(object[channel].err);
     });
   }
 };
