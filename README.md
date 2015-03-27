@@ -71,7 +71,7 @@ slackBot.send({
   icon_emoji: ':zombie:'
 }, callback);
 ```
-In this case, the same message will be sent to the general channel, and to jon and charles as direct messages. When sending a message to multiple channels, the callback receives one argument, which is an object whose keys are each channel the message was sent to, and the value is an object with keys err, res, and body containing the values returned from that particular `POST`. If we were to send the above message to those three channels, the object that would be returned to the callback would look like this:
+In this case, the same message will be sent to the general channel, and to jon and charles as direct messages. When sending a message to multiple channels, the callback receives two arguments. The first argument is the error argument. If no errors occurred, the first argument will be `null`. If one or more errors occurred, the first argument will be an array of channel names where the errors occurred. The second argument is an object whose keys are each channel the message was sent to, and the value is an object with keys err, res, and body containing the values returned from that particular `POST`. If we were to send the above message to those three channels and no errors occurred, the object that would be returned to the callback would look like this:
 ```javascript
 {
   '#general' : {
@@ -90,4 +90,17 @@ In this case, the same message will be sent to the general channel, and to jon a
     body: 'ok'
   }
 }
+```
+
+It is important to note that any errors that occur when sending to multiple channels will not stop the sending of the message to the other channels. That way if an error occurs half way through, it won't stop the message from going to the remaining channels.
+
+The reason the error argument passed to the callback is an array of channel names is so you can easily access all the errors that occurred in the returned object by using the values in the array as the keys in the object:
+```javascript
+slackBot.send(messageObjectToMultipleChannels, function(err, object) {
+  if (err) {
+    err.forEach(function(channel) {
+      console.log(object[channel].err;
+    });
+  }
+};
 ```
