@@ -102,5 +102,5 @@ slackBot.send(messageObjectToMultipleChannels, function(err, object) {
       console.log(object[channel].err);
     });
   }
-};
+});
 ```
