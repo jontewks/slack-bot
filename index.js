@@ -19,7 +19,6 @@ module.exports = function(url) {
   methods.send = function(message, cb) {
     // Set defaults
     message = message || {};
-    message.text = message.text || 'You didn\'t pass in a text field silly.';
     message.channel = message.channel || '#general';
     message.username = message.username || 'Slack Bot';
 
