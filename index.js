@@ -3,11 +3,11 @@
 var request = require('request');
 
 module.exports = function(url) {
-  if (!url) {
-    return cb('You didn\'t pass a url to slack-bot');
-  }
-
   function postToSlack(message, cb) {
+    if (!url) {
+      return cb('You didn\'t pass a url to slack-bot');
+    }
+    
     request.post({
       url: url,
       method: 'POST',
