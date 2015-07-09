@@ -3,9 +3,6 @@
   "version": "1.1.4",
   "description": "Simplifies sending bot messages to slack.",
   "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/jontewks/slack-bot.git"
@@ -13,7 +10,9 @@
   "keywords": [
     "slack",
     "messages",
-    "bot"
+    "bot",
+    "post",
+    "alerts"
   ],
   "author": "Jon Tewksbury <jontewks@gmail.com> (http://www.jontewks.com)",
   "license": "MIT",
